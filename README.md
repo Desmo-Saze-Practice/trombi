@@ -11,5 +11,3 @@
 |5|admin|acces student details|edit students|
 |6|admin|creat promotion|add promotion|
 |7|admin|creat student|add students|
-|8|something|something|something|
-|9|something|something|something|
