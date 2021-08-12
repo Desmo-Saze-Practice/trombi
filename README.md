@@ -2,8 +2,8 @@
 
 ## user cases
 
-| as | I want | for |
-|-----|-------|-----|
+|#| as | I want | for |
+|-|----|--------|-----|
 |1|visitor|check promotions|view details|
 |2|visitor|check students|view details|
 |3|admin|login|acces admin tools|
