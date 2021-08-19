@@ -13,6 +13,8 @@ router.get('/promos', promoController.allPromos);
 
 router.get('/promos/:id', promoController.currentPromo);
 
+router.get('/promotion/:id/students', studentController.studentInPromo)
+
 router.use(mainController.error404);
 
 module.exports = router;
