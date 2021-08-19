@@ -1,27 +1,22 @@
 // envirionement viriable
 require('dotenv').config();
 
-// Express
+/**** EXPRESS ****/
 const express = require('express');
 const app = express();
-
 // router
 const router = require('./app/router');
 
+/***** VIEWS *****/
 // template engine EJS
 app.set('view engine', 'ejs');
+//defines views file
 app.set('views', './app/views');
-
 // static files
 app.use(express.static('assets'));
 
 // PORT
 const PORT = process.env.PORT || 3000;
-
-// app.get('/', (req, res) => {
-//     res.send('yo');
-//     console.log('wesh');
-// });
 
 app.use(router);
 

@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+
+<h1>Liste des promos</h1>
+    <% if (locals.promos) { %>
+        <ul class="cards">
+            <% promos.forEach(promo => { %>
+                <li class="card card--label"><a href="promos/<%= promo.id %>">
+                    <%= promo.name %>
+                </a></li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>Aucune promo disponible</p>
+    <% } %>
+
+<%- include('partials/footer') %>
