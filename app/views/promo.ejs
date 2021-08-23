@@ -2,12 +2,11 @@
 
 <h1>Promo : <%= currentPromo.name %></h1>
 
-    
 <p>Github : <a href="<%= currentPromo.github_organization %>"><%= currentPromo.github_organization %></a></p>
 <nav>
     <ul>
-        <li><a href="/promo/<% currentPromo.id %>/students ">Liste des étudiants</a></li>
-        <li><a href="/promo/<% currentPromo.id %>/edit ">Modifier la promo</a></li>
+        <li><a href="/promos/<%= currentPromo.id %>/students ">Liste des étudiants</a></li>
+        <li><a href="/promos/<%= currentPromo.id %>/edit ">Modifier la promo</a></li>
     </ul>
 </nav>
 
