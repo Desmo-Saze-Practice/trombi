@@ -1,15 +1,14 @@
 <%- include('partials/header') %>
 
-
     <div class="student">
         <div class="student-avatar">
-            <img src="<%= foundStudent.profile_picture_url %>" alt="">
+            <img src="<%= locals.currentStudent.profile_picture_url %>" alt="">
         </div>
         <div class="student-description">
-            <h1><%= foundStudent.first_name %> <%= foundStudent.last_name %></h1>
+            <h1><%= locals.currentStudent.first_name %> <%= locals.currentStudent.last_name %></h1>
             <p>Étudiant</p>
-            <p>Promo: <a href="/promos/<%= studentsPromo.id %> "><em><%= studentsPromo.name%></em></a></p>
-            <p>Pseudo Github : <em><%= foundStudent.github_username %></em></p>
+            <p>Promo: <a href="/promos/<%= locals.currentPromo.id %> "><em><%= locals.currentPromo.name%></em></a></p>
+            <p>Pseudo Github : <em><%= locals.currentStudent.github_username %></em></p>
             <nav>
                 <ul>
                     <li><a href="#">Modifier la fiche de l'étudiant</a></li>

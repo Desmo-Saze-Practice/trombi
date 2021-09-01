@@ -1,4 +1,4 @@
-// envirionement viriable
+// envirionement variable
 require('dotenv').config();
 
 /**** EXPRESS ****/

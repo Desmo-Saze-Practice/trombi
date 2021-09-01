@@ -1,32 +1,39 @@
-const promos = require('../../data/promos.json');
-const students = require('../../data/students.json');
+const client = require('../db');
 
 module.exports = {
     studentInPromo: (req, res) => {
+        const studentsQuery = `SELECT * FROM "student" WHERE "promo_id" = $1`;
         const promoId = req.params.id;
 
-        const currentStudents = students.filter( students => students.promo.toString() === promoId);
+        client.query(studentsQuery, [promoId], (err, result) => {
+            if (err) {
+                throw err;
+            } else {
+                res.render('studentsInPromo', { currentStudents: result.rows });
+            }
+        })
 
-
-        res.render('studentsInPromo', {currentStudents});
     },
     currentStudent: (req, res, next) => {
-        console.log('here');
+        const studentQuery = `SELECT * FROM "student" WHERE "id" = $1`;
         const studentId = req.params.studentid;
-        console.log(studentId);
 
-        foundStudent = students.find( student => studentId === student.id.toString());
-        console.log('found student ', foundStudent);
+        client.query(studentQuery, [studentId], (err, data) => {
+            const student = data.rows[0];
+            const promoQuery = `SELECT * FROM "promo" WHERE "id" = $1`;
+            const promoId = student.promo_id;
+            if (data.rowCount === 0) {
+                next();
+                return;
+            }
+            client.query(promoQuery, [promoId], (err, data) => {
+                const promo = data.rows[0];
+                if (err) {
+                    throw err;
+                }
 
-        if (!foundStudent) {
-            next();
-            return;
-        } else {
-            const studentsPromo = promos.find( promo => promo.id === foundStudent.promo);
-            console.log('found promo ', studentsPromo);
-            
-            res.render('currentStudent', {foundStudent, studentsPromo});
-        }
-        
+                res.render('currentStudent', { currentStudent: student, currentPromo: promo });
+            });
+        })
     }
 }

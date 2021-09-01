@@ -1,15 +1,24 @@
-const promos = require('../../data/promos.json');
+const client = require('../db');
 
 module.exports = {
     allPromos: (req, res) => {
-        res.render('promos', { promos });
+        const queryStr = `SELECT * FROM promo;`;
+        client.query(queryStr, (error, data) => {
+            if (error) {
+                console.trace(error);
+            }
+            res.render('promos', { promos: data.rows });
+        });
     },
 
     currentPromo: (req, res) => {
-        const promoId = req.params;
-    
-        const currentPromo = promos.find( promo => promoId.id === promo.id.toString());
-    
-        res.render('promo', {currentPromo});
+        const id = req.params.id;
+        client.query(`SELECT * FROM "promo" WHERE "id"=$1;`, [id], (error, data) => {
+            if (error) {
+                console.trace(error);
+            }
+            res.render('promo', { currentPromo: data.rows[0] });
+            console.log(data.rows[0]);
+        });
     }
 };
