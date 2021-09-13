@@ -1,6 +1,11 @@
 <%- include('partials/header') %>
 
 <h2>Bienvenue sur le trombinoscope de l'école O'clock</h2>
-<a href="/promos">Voir la liste de promos</a>
+
+<% if (locals.message) { %>
+    <p><%= message %></p>
+<% } %> 
+
+<a href="/promos">Voir la liste de promos</a> - <a href="/student/edit">Ajouter un étudiant</a>
 
 <%- include('partials/footer') %>

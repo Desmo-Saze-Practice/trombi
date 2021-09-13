@@ -12,9 +12,17 @@
             <nav>
                 <ul>
                     <li><a href="#">Modifier la fiche de l'étudiant</a></li>
+                    <li><a href="#" class="confirm">Supprimer la fiche de l'étudiant</a></li>
                 </ul>
             </nav>
         </div>
     </div>
+
+    <script>document.querySelector('.confirm').addEventListener('click', () => {
+        event.preventDefault();
+        if(confirm(`Voulez-vous vraiment supprimer la fiche de cet étudiant ?`)) {
+            document.location = "/student/<%= currentStudent.id %>/delete ";
+        }
+    })</script>
 
 <%- include('partials/footer') %>

@@ -15,9 +15,14 @@ app.set('views', './app/views');
 // static files
 app.use(express.static('assets'));
 
+// to transform req body to json
+app.use(express.urlencoded({extended: true}));
+
 // PORT
 const PORT = process.env.PORT || 3000;
 
+
+// routage
 app.use(router);
 
 app.listen(PORT, () => {

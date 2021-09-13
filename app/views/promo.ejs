@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<h1>Promo : <%= currentPromo.name %></h1>
+<h1>Promo : <%= locals.currentPromo.name %></h1>
 
 <p>Github : <a href="<%= currentPromo.github_organization %>"><%= currentPromo.github_organization %></a></p>
 <nav>

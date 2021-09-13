@@ -1,24 +1,23 @@
-const client = require('../db');
+// const client = require('../db');
+const dataMapper = require('../dataMapper');
 
 module.exports = {
-    allPromos: (req, res) => {
-        const queryStr = `SELECT * FROM promo;`;
-        client.query(queryStr, (error, data) => {
+    getAllPromos: (req, res) => {
+        dataMapper.getAllPromos((error, result) => {
             if (error) {
-                console.trace(error);
+                throw error;
             }
-            res.render('promos', { promos: data.rows });
+            res.render('promos', { promos: result.rows });
         });
     },
 
     currentPromo: (req, res) => {
         const id = req.params.id;
-        client.query(`SELECT * FROM "promo" WHERE "id"=$1;`, [id], (error, data) => {
+        dataMapper.currentPromo(id, (error, result) => {
             if (error) {
                 console.trace(error);
             }
-            res.render('promo', { currentPromo: data.rows[0] });
-            console.log(data.rows[0]);
+            res.render('promo', { currentPromo: result.rows[0] });
         });
     }
 };

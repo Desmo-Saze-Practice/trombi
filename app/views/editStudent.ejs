@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+    <h1>Ajouter un étudiant</h1>
+    <form method="POST">
+        <p>
+            <label>Promotion</label>
+            <% if(locals.promos) { %> 
+                <select name="promo_id" id="promo" required>
+                    <option value="">Choisissez une promotion</option>
+                    <% for(const promo of promos) { %> 
+                <option value="<%= promo.id %>"><%= promo.name %> </option>
+                <% } %> 
+            </select>
+            <% } else { %> 
+                <em>Aucune promotion</em>
+                <% } %> 
+        </p>
+        <p>
+            <label>Prénom</label>
+            <input type="text" name="first_name" placeholder="Prénom">
+        </p>
+        <p>
+            <label>Nom</label>
+            <input type="text" name="last_name" placeholder="Nom">
+        </p>
+        <p>
+            <label>Pseudo Github</label>
+            <input type="text" name="github_username" placeholder="PrenomNom">
+        </p>
+        <p>
+            <button>Valider</button>
+        </p>
+    </form>
+<%- include('partials/footer') %>
