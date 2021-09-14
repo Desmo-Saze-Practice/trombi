@@ -11,5 +11,20 @@ module.exports = {
 
     error404: (req, res) => {
         res.status(404).render('404');
+    },
+
+    history: (req, res) => {
+        const history = req.session.history;
+        res.render('history', { history });
+    },
+
+    showLogin: (req, res) => {
+        res.render('login');
+    },
+
+    saveLogin: (req, res) => {
+        req.session.username = req.body.username;
+        console.log(req.session.username);
+        res.redirect('/');
     }
 }

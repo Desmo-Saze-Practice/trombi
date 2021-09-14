@@ -13,9 +13,21 @@ const studentController = require('./controlllers/studentController');
 // For admin
 const adminController = require('./controlllers/adminController');
 
+// to pass form information from login to every route
+router.use((req, res, next) => {
+    res.locals.username = req.session.username;
+    next();
+});
+
+// for login
+const checkLogin = require('./checkLogin');
 
 // Main
 router.get('/', mainController.homePage);
+
+// Login
+router.get('/login', mainController.showLogin);
+router.post('/login', mainController.saveLogin);
 
 // Promo
 router.get('/promos', promoController.getAllPromos);
@@ -27,12 +39,15 @@ router.get('/promos/:id/students', studentController.studentInPromo);
 
 router.get('/students/:studentid', studentController.currentStudent);
 
-router.get('/student/:studentid/delete', adminController.deleteStudent);
-
 // Admin
-router.get('/student/edit', adminController.showEditStudent);
+router.get('/student/edit', checkLogin, adminController.showEditStudent);
 
-router.post('/student/edit', adminController.insertStudent);
+router.post('/student/edit', checkLogin, adminController.insertStudent);
+
+router.get('/student/:studentid/delete', checkLogin, adminController.deleteStudent);
+
+// History
+router.get('/history', mainController.history);
 
 // 404
 router.use(mainController.error404);

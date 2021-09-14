@@ -18,6 +18,11 @@
             <ul>
                 <li><a href="/">Accueil</a></li>
                 <li><a href="/promos">Promos</a></li>
+                <% if (!locals.username) { %>
+                    <li><a href="/login">Connexion</a></li>
+                <% } else { %> 
+                    <li> Bonjour <%= username %></li>
+                <% } %> 
             </ul>
         </nav>
     </header>

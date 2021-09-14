@@ -15,8 +15,20 @@ app.set('views', './app/views');
 // static files
 app.use(express.static('assets'));
 
+// coockies
+const session = require('express-session');
+app.use(session({
+    secret: 'top pass',
+    resave: true,
+    saveUninitialized: true,
+    // cookie: { secure: true }
+}));
+
+const history = require('./app/history');
+app.use(history);
+
 // to transform req body to json
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 // PORT
 const PORT = process.env.PORT || 3000;

@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+
+<h1>historque de navigation</h1>
+
+<% if (locals.history) { %> 
+    <ol>
+        <% for(const page of history) { %>
+                <li>
+                    <a href="<%= page %> "><%= page %></a>
+                </li>
+        <% } %> 
+    </ol>
+<% } %> 
+<%- include('partials/footer') %>
